@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y software-properties-common  \
                           openssh-server \
                           sudo \
                           tmux \
+                          unzip \
                           wget \
                           zsh \
     && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
