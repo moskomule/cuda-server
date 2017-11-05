@@ -1,6 +1,11 @@
 # cuda-server
 
-This is easily installable `cuda-server` container.
+This is an easily installable `cuda-server`. You can access it via ssh.
+
+## Prerequirements
+
+* docker
+* nvidia-docker
 
 ## Usage
 
