@@ -1,4 +1,4 @@
-ARG version="8.0-cudnn6-devel-ubuntu16.04"
+ARG version
 FROM nvidia/cuda:${version}
 
 RUN apt-get update && apt-get install -y software-properties-common  \
