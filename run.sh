@@ -3,7 +3,7 @@
 # This script is build and run cuda included docker server
 if [[ $1 == "-h" ]]; then
     echo "#$0 PORT_DIGITS IMAGE_NAME CONTAINER_NAME [CUDA_VER]
-        e.g. #./$0 00 cuda8 $USER 8
+        e.g. #$0 00 cuda8 $USER 8
         PORT_DIGITS: 0~99
         CUDA_VER: 8 or 9"
     exit 0
