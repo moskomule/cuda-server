@@ -41,8 +41,9 @@ RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.s
     && bash miniconda.sh -b -p /opt/.miniconda \
     && rm miniconda.sh
 ENV PATH="/opt/.miniconda/bin:$PATH"
-# to enable pip/conda install for users
-RUN chmod 777 -R /opt/.miniconda
+RUN echo "export PATH=/opt/.miniconda/bin:$PATH" >> /etc/profile \
+    # to enable pip/conda install for users
+    && chmod 777 -R /opt/.miniconda
  
 RUN conda install -y numpy scipy matplotlib pandas ipython tqdm \
     && conda clean -ay \
