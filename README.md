@@ -36,6 +36,12 @@ useradd USERNAME --create-home
 passwd USERNAME
 ```
 
+### run setup.sh
+
+```
+bash /opt/setup.sh
+```
+
 ### change default shell
 
 ```

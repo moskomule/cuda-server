@@ -58,5 +58,5 @@ $ nvidia-smi # check if nvidia-smi works
 $ passwd # change root password
 $ useradd USERNAME --create-home # create user
 $ passwd USERNAME
-$ chsh -s SHELL_PATH USERNAME
+$ bash /opt/setup.sh
 "

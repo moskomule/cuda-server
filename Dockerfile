@@ -25,7 +25,6 @@ RUN locale-gen en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
-
 WORKDIR /opt
 
 # for ssh
@@ -36,18 +35,8 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 RUN echo "export PATH=$PATH" >> /etc/profile && \
     echo "ldconfig" >> /etc/profile
     
-# install python
-RUN wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh \
-    && bash miniconda.sh -b -p /opt/.miniconda \
-    && rm miniconda.sh
-ENV PATH="/opt/.miniconda/bin:$PATH"
-RUN echo "export PATH=/opt/.miniconda/bin:$PATH" >> /etc/profile 
- 
-RUN conda install -y numpy scipy matplotlib pandas ipython tqdm \
-    && conda clean -ay \
-    && pip install --no-cache-dir neovim
-
 USER root
 RUN echo "root:Docker!" | chpasswd
 EXPOSE 22
+COPY setup.sh /opt/
 CMD ["/usr/sbin/sshd", "-D"]
