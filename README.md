@@ -38,8 +38,10 @@ passwd USERNAME
 
 ### run setup.sh
 
+This installs the latest Python and, if specified, installs the dotfiles. 
+
 ```
-bash /opt/setup.sh
+bash /opt/setup.sh [--dotfiles]
 ```
 
 ### change default shell

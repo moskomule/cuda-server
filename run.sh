@@ -43,7 +43,8 @@ nvidia-docker run -d -P \
     --privileged \
     -p 300$PORT_DIGITS:22 \
     -p 388$PORT_DIGITS:8888 \
-    -v $(pwd)/volume/$CONTAINER_NAME:/home/ubuntu/data \
+    -p 366$PORT_DIGITS:6006 \
+    -v $(pwd)/volume/$CONTAINER_NAME:/data \
     --name $CONTAINER_NAME \
     $IMAGE_NAME
 
