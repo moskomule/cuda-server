@@ -11,12 +11,20 @@ RUN apt-get update && apt-get install -y software-properties-common  \
                           gcc \
                           git \
                           neovim \
+                          libav-tools \
+                          libboost-all-dev \
+                          libjpeg-dev \
+                          libsdl2-dev \
                           locales \
                           openssh-server \
                           sudo \
+                          swig \
                           tmux \
                           unzip \
+                          xorg-dev \ 
+                          xvfb \
                           wget \
+                          zlib1g-dev \
                           zsh \
     && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
