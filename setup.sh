@@ -10,6 +10,9 @@ if [[ $1 == "--dotfile" ]]; then
     cd .dotfiles
     bash setup.sh
     cd ..
+else
+    echo "don't know ${1}"
+    exit 1
 fi
 
 # install miniconda
@@ -20,5 +23,5 @@ PATH="$HOME/.miniconda/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/
 echo "export PATH=$PATH" >> .zshrc
 conda install -y numpy scipy matplotlib pandas ipython tqdm \
     && conda clean -ay \
-    && pip install --no-cache-dir neovim
+    && pip install --no-cache-dir --require requirements.txt
 

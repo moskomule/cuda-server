@@ -1,13 +1,15 @@
 # cuda-server
 
-This is an easily installable `cuda-server`. You can access it via ssh.
+This is an easily installable `cuda-server` for reproductivity. 
+
+You can access it via ssh as a server.
 
 ## Prerequirements
 
 * docker
 * nvidia-docker
 
-## Usage
+## Build Images
 
 ```
 git clone https://github.com/moskomule/cuda-server
@@ -17,37 +19,13 @@ cd cuda-server
 # ./run.sh 00 cuda8 moskomule 8
 ```
 
-## After running `run.sh`
+## Access to the crated server
 
-You can access to the server `ssh -p 300[PORT_DIGITS] root@localhost`
+You can access to the server `ssh -p 300[PORT_DIGITS] CONTAINER_NAME@localhost`.
 
-For example...
+Then run `nvidia-smi` to check whether the nvidia-things works correct.
 
-### change root password
+## Next
 
-```
-passwd
-```
-
-### create user
-
-```
-useradd USERNAME --create-home
-passwd USERNAME
-```
-
-### run setup.sh
-
-This installs the latest Python and, if specified, installs the dotfiles. 
-
-```
-bash /opt/setup.sh [--dotfiles]
-```
-
-### change default shell
-
-```
-chsh -s SHELL_PATH USERNAME
-``` 
-
-`SHELL_PATH` is `/bin/bash`, `/bin/zsh`, ...
+* `./setup.sh [--dotfile]` installs (my dotfile and) the latest Python with miniconda.
+* `sshfs user@hostname:absolute_path_to_dir somewhere` to mount a remote directory.

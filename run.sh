@@ -36,7 +36,10 @@ esac
 
 # build
 echo "building..."
-nvidia-docker build  --build-arg version=$CUDA_VER -t $IMAGE_NAME .
+cd base
+nvidia-docker build  --build-arg version=$CUDA_VER  -t ${IMAGE_NAME} .
+cd ..
+nvidia-docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$CONTAINER_NAME -t "${CONTAINER_NAME}_image" .
 
 echo "running..."
 nvidia-docker run -d -P \
@@ -46,18 +49,15 @@ nvidia-docker run -d -P \
     -p 366$PORT_DIGITS:6006 \
     -v $(pwd)/volume/$CONTAINER_NAME:/data \
     --name $CONTAINER_NAME \
-    $IMAGE_NAME
+    "${CONTAINER_NAME}_image"
 
 echo "finished
 
 What's next?
 
-ssh -p 300$PORT_DIGITS root@localhost
+ssh -p 300$PORT_DIGITS ${CONTAINER_NAME}@localhost
 ...# default password is Dokcer!
 after login
 $ nvidia-smi # check if nvidia-smi works
-$ passwd # change root password
-$ useradd USERNAME --create-home # create user
-$ passwd USERNAME
-$ bash /opt/setup.sh
+$ ./setup.sh [--dotfile] # install Python
 "
