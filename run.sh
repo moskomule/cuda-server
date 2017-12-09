@@ -42,7 +42,7 @@ cd ..
 nvidia-docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$CONTAINER_NAME -t "${CONTAINER_NAME}_image" .
 
 echo "running..."
-nvidia-docker run -d -P \
+docker run --runtime=nvidia -d -P \
     --privileged \
     -p 300$PORT_DIGITS:22 \
     -p 388$PORT_DIGITS:8888 \
