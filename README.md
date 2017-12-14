@@ -27,5 +27,5 @@ Then run `nvidia-smi` to check whether the nvidia-things works correct.
 
 ## Next
 
-* `./setup.sh [--dotfile]` installs (my dotfile and) the latest Python with miniconda.
+* `./setup.sh [--dotfiles]` installs (my dotfile and) the latest Python with miniconda.
 * `sshfs user@hostname:absolute_path_to_dir somewhere` to mount a remote directory.

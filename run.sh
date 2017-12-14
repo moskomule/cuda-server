@@ -47,7 +47,7 @@ docker run --runtime=nvidia -d -P \
     -p 300$PORT_DIGITS:22 \
     -p 388$PORT_DIGITS:8888 \
     -p 366$PORT_DIGITS:6006 \
-    -v $(pwd)/volume/$CONTAINER_NAME:/data \
+    -v ~/Downloads:/home/$CONTAINER_NAME/Downloads \
     --name $CONTAINER_NAME \
     "${CONTAINER_NAME}_image"
 
@@ -59,5 +59,5 @@ ssh -p 300$PORT_DIGITS ${CONTAINER_NAME}@localhost
 ...# default password is Dokcer!
 after login
 $ nvidia-smi # check if nvidia-smi works
-$ ./setup.sh [--dotfile] # install Python
+$ ./setup.sh [--dotfiles] # install Python
 "

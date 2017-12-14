@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # setup file
-# bash setup.sh [--dotfile]
+# bash setup.sh [--dotfiles]
 
 cd $HOME
 
-if [[ $1 == "--dotfile" ]]; then
+if [[ $1 == "--dotfiles" ]]; then
     git clone https://github.com/moskomule/.dotfiles.git
     cd .dotfiles
     bash setup.sh
