@@ -43,6 +43,7 @@ nvidia-docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$
 
 echo "running..."
 docker run --runtime=nvidia -d -P \
+    --ipc=host \
     --privileged \
     -p 300$PORT_DIGITS:22 \
     -p 388$PORT_DIGITS:8888 \
