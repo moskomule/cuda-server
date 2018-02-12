@@ -50,6 +50,7 @@ docker run --runtime=nvidia -d -P \
     -p 366$PORT_DIGITS:6006 \
     -v ~/Downloads:/home/$CONTAINER_NAME/Downloads \
     --name $CONTAINER_NAME \
+    --restart=always \
     "${CONTAINER_NAME}_image"
 
 echo "finished
