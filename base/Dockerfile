@@ -22,13 +22,13 @@ RUN apt-get update && apt-get install -y software-properties-common  \
                           swig \
                           tmux \
                           unzip \
-                          xorg-dev \ 
+                          xorg-dev \
                           xvfb \
                           wget \
                           zlib1g-dev \
                           zsh \
     && apt-get clean && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
+
 # for ssh
 RUN mkdir /var/run/sshd
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -36,7 +36,7 @@ RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/s
 # nvidia-docker does't have these
 RUN echo "export PATH=$PATH" >> /etc/profile && \
     echo "ldconfig" >> /etc/profile
-    
+
 USER root
 RUN echo "root:Docker!" | chpasswd
 EXPOSE 22

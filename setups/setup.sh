@@ -18,8 +18,8 @@ else
 fi
 
 # install miniconda
-wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh 
-bash miniconda.sh -b -p .miniconda 
+wget -q https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+bash miniconda.sh -b -p .miniconda
 rm miniconda.sh
 PATH="$HOME/.miniconda/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 echo "export PATH=$PATH" >> .zshrc
