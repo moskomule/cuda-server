@@ -1,11 +1,10 @@
 ARG image_name
-FROM ${image_name}:latest
+FROM ${image_name}
 
 USER root
 ARG user_name
 RUN useradd -ms /bin/zsh ${user_name} \
-    && echo "${user_name}:Docker!" | chpasswd ${user_name}
-COPY setups /home/${user_name}
-RUN chmod 777 /home/${user_name}/setup.sh
+    && echo "${user_name}:Docker!" | chpasswd ${user_name} \
+    && chown -R ${user_name} /opt/.miniconda
 
 CMD ["/usr/sbin/sshd", "-D"]

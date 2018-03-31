@@ -1,44 +1,66 @@
 #!/bin/bash
 
 # This script is build and run cuda included docker server
-if [[ $1 == "-h" ]]; then
-    echo "#$0 PORT_DIGITS IMAGE_NAME CONTAINER_NAME [CUDA_VER]
-        e.g. #$0 00 cuda8 $USER 8
+# constant variables
+$IMAGE_NAME_BASE="moskomule/dockerfiles:server-cuda"
+
+# functions
+help() {
+    echo "#$0 PORT_DIGITS CONTAINER_NAME CUDA_VER [DOCKER_OPTIONS]
+        e.g. #$0 00 $USER 8
         PORT_DIGITS: 0~99
-        CUDA_VER: 8 or 9"
+        CONTAINER_NAME: any name you like
+        CUDA_VER: 8 or 9
+        DOCKER_OPTIONS: -v /foo/bar:/foo/bar (currently only supports -v option)
+        "
+}
+
+if [[ $1 == "-h" ]]; then
+    help
     exit 0
 fi
 
 # set args
 if [[ $1 == "" ]] || [[ $2 == "" ]] || [[ $3 == "" ]]; then
-    echo "see help($0 -h)"
+    help
     exit 1
 else
     PORT_DIGITS=$1
-    IMAGE_NAME=$2
-    CONTAINER_NAME=$3
+    CONTAINER_NAME=$2
+    case $3 in 
+       "8")
+           IMAGE_NAME="${IMAGE_NAME_BASE}8"
+           ;;
+       ""|"9")
+           IMAGE_NAME="${IMAGE_NAME_BASE}9"
+           ;;
+       *)
+           echo "no such cuda version $3" 
+           exit 1
+           ;;
+    esac
 fi
 
-# set optional arg
-case $4 in 
-   ""|"8")
-       CUDA_VER="8.0-cudnn7-devel-ubuntu16.04"
-       ;;
-   "9")
-       CUDA_VER="9.0-cudnn7-devel-ubuntu16.04"
-       ;;
-   *)
-       echo "no such cuda version $4" 
-       exit 1
-       ;;
-esac
+# remove processed args
+shift 3
 
+# set optional args
+DOCKER_OPTIONS=""
+for OPT in "$@"; do
+    case $OPT in
+        "-v"|"--volume")
+            DOCKER_OPTIONS="$DOCKER_OPTIONS $1 $2"
+            shift 2
+            ;;
+        *)
+            echo "unexpected arguments $@"
+            exit 1
+            ;; 
+    esac
+done
 
 # build
 echo "building..."
-cd base
-nvidia-docker build  --build-arg version=$CUDA_VER  -t ${IMAGE_NAME} .
-cd ..
 nvidia-docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$CONTAINER_NAME -t "${CONTAINER_NAME}_image" .
 
 echo "running..."
@@ -48,9 +70,9 @@ docker run --runtime=nvidia -d -P \
     -p 300$PORT_DIGITS:22 \
     -p 388$PORT_DIGITS:8888 \
     -p 366$PORT_DIGITS:6006 \
-    -v ~/Downloads:/home/$CONTAINER_NAME/Downloads \
     --name $CONTAINER_NAME \
     --restart=always \
+    $DOCKER_OPTIONS \
     "${CONTAINER_NAME}_image"
 
 echo "finished
@@ -61,5 +83,4 @@ ssh -p 300$PORT_DIGITS ${CONTAINER_NAME}@localhost
 ...# default password is Dokcer!
 after login
 $ nvidia-smi # check if nvidia-smi works
-$ ./setup.sh [--dotfiles] # install Python
 "
