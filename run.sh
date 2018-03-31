@@ -2,7 +2,7 @@
 
 # This script is build and run cuda included docker server
 # constant variables
-$IMAGE_NAME_BASE="moskomule/dockerfiles:server-cuda"
+IMAGE_NAME_BASE="moskomule/dockerfiles:server-cuda"
 
 # functions
 help() {
