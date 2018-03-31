@@ -47,17 +47,12 @@ shift 3
 # set optional args
 DOCKER_OPTIONS=""
 for OPT in "$@"; do
+
     case $OPT in
         "-v"|"--volume")
             DOCKER_OPTIONS="$DOCKER_OPTIONS $1 $2"
             shift 2
             ;;
-        "")
-            ;;
-        *)
-            echo "unexpected arguments $@"
-            exit 1
-            ;; 
     esac
 done
 
