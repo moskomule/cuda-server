@@ -23,5 +23,12 @@ cd cuda-server
 
 You can access to the server `ssh -p 300[PORT_DIGITS] CONTAINER_NAME@localhost`.
 
+You need update the PATH 
+
+```
+PATH="/opt/.miniconda/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+echo "export PATH=$PATH" >> .zshrc
+```
+
 Then run `nvidia-smi` to check whether the nvidia-things works correct.
 
