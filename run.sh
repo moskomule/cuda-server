@@ -31,7 +31,7 @@ else
        "8")
            IMAGE_NAME="${IMAGE_NAME_BASE}8"
            ;;
-       ""|"9")
+       "9")
            IMAGE_NAME="${IMAGE_NAME_BASE}9"
            ;;
        *)
@@ -51,6 +51,8 @@ for OPT in "$@"; do
         "-v"|"--volume")
             DOCKER_OPTIONS="$DOCKER_OPTIONS $1 $2"
             shift 2
+            ;;
+        "")
             ;;
         *)
             echo "unexpected arguments $@"
