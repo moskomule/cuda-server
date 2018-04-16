@@ -12,4 +12,10 @@ RUN useradd -ms /bin/zsh ${user_name} \
     && chown ${user_name} /etc/profile
 ENV PATH "/opt/.miniconda/bin:/usr/local/nvidia/bin:/usr/local/cuda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
+# for utf-8
+RUN locale-gen en_US.UTF-8  
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8
+
 CMD ["/usr/sbin/sshd", "-D"]
