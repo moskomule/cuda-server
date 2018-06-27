@@ -7,10 +7,10 @@ IMAGE_NAME_BASE="moskomule/dockerfiles:server-cuda"
 # functions
 help() {
     echo "#$0 PORT_DIGITS CONTAINER_NAME CUDA_VER [DOCKER_OPTIONS]
-        e.g. #$0 00 $USER 8
+        e.g. #$0 00 $USER 90 
         PORT_DIGITS: 0~99
         CONTAINER_NAME: any name you like
-        CUDA_VER: 8 or 9
+        CUDA_VER: 90 or 92
         DOCKER_OPTIONS: -v /foo/bar:/foo/bar (currently only supports -v option)
         "
 }
@@ -28,11 +28,11 @@ else
     PORT_DIGITS=$1
     CONTAINER_NAME=$2
     case $3 in 
-       "8")
-           IMAGE_NAME="${IMAGE_NAME_BASE}8"
+       "90")
+           IMAGE_NAME="${IMAGE_NAME_BASE}90"
            ;;
-       "9")
-           IMAGE_NAME="${IMAGE_NAME_BASE}9"
+       "92")
+           IMAGE_NAME="${IMAGE_NAME_BASE}92"
            ;;
        *)
            echo "no such cuda version $3" 

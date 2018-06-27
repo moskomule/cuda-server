@@ -16,7 +16,7 @@ git clone https://github.com/moskomule/cuda-server
 cd cuda-server
 ./run.sh PORT_DIGITS CONTAINER_NAME [CUDA_VER]
 # for example
-# ./run.sh 00 moskomule 8
+# ./run.sh 00 moskomule 90
 ```
 
 ## Access to the crated server
