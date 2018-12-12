@@ -36,6 +36,7 @@ else
            ;;
         "100")
             IMAGE_NAME="${IMAGE_NAME_BASE}100"
+            ;;
        *)
            echo "no such cuda version $3" 
            exit 1
