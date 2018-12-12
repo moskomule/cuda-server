@@ -10,7 +10,7 @@ help() {
         e.g. #$0 00 $USER 90 
         PORT_DIGITS: 0~99
         CONTAINER_NAME: any name you like
-        CUDA_VER: 90 or 92
+        CUDA_VER: 90, 92 or 100
         DOCKER_OPTIONS: -v /foo/bar:/foo/bar (currently only supports -v option)
         "
 }
@@ -34,6 +34,8 @@ else
        "92")
            IMAGE_NAME="${IMAGE_NAME_BASE}92"
            ;;
+        "100")
+            IMAGE_NAME="${IMAGE_NAME_BASE}100"
        *)
            echo "no such cuda version $3" 
            exit 1
