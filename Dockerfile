@@ -18,4 +18,8 @@ ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en  
 ENV LC_ALL en_US.UTF-8
 
+# install linuxbrew
+USER ${user_name}
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+
 CMD ["/usr/sbin/sshd", "-D"]
