@@ -19,7 +19,8 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # install linuxbrew
-USER ${user_name}
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install.sh)"
+RUN git clone https://github.com/Linuxbrew/brew.git /home/${user_name}/.linuxbrew \
+    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.linuxbrew \
+    && sudo -u ${USERNAME} echo "PATH=/home/${user_name}/.linuxbrew/bin:/home/${user_name}/.linuxbrew/sbin:$PATH" > /home/${user_name}/.bashrc
 
 CMD ["/usr/sbin/sshd", "-D"]
