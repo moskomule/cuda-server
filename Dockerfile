@@ -20,7 +20,7 @@ ENV LC_ALL en_US.UTF-8
 
 # install linuxbrew
 RUN git clone https://github.com/Linuxbrew/brew.git /home/${user_name}/.linuxbrew \
-    && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.linuxbrew \
-    && sudo -u ${USERNAME} echo "PATH=/home/${user_name}/.linuxbrew/bin:/home/${user_name}/.linuxbrew/sbin:$PATH" > /home/${user_name}/.bashrc
+    && chown -R ${user_name}:${user_name} /home/${user_name}/.linuxbrew \
+    && sudo -u ${user_name} echo "PATH=/home/${user_name}/.linuxbrew/bin:/home/${user_name}/.linuxbrew/sbin:$PATH" > /home/${user_name}/.bashrc
 
 CMD ["/usr/sbin/sshd", "-D"]
