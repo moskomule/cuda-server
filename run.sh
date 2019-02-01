@@ -61,7 +61,7 @@ done
 
 # build
 echo "building..."
-nvidia-docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$CONTAINER_NAME -t "${CONTAINER_NAME}_image" .
+docker build --build-arg image_name=${IMAGE_NAME} --build-arg user_name=$CONTAINER_NAME -t "${CONTAINER_NAME}_image" .
 
 echo "running..."
 docker run --runtime=nvidia -d -P \
